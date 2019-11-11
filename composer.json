@@ -1,0 +1,42 @@
+{
+  "name" : "orbit-core/orbit-core",
+  "description" : "Orbit core dev frame",
+  "require-dev" : {
+    "codeception/codeception" : "^3.1",
+    "symfony/var-dumper" : "^4.3",
+    "vimeo/psalm" : "^3.6"
+  },
+  "config": {
+    "use-include-path": true,
+    "process-timeout": 1200
+  },
+  "license" : "MIT",
+  "authors" : [
+    {
+      "name" : "Mike Bertram",
+      "email" : "contact@mibexx.de"
+    }
+  ],
+  "require" : {
+    "PHP": ">7.3",
+    "wikimedia/composer-merge-plugin": "^1.4"
+  },
+  "replace": {
+    "orbit-core/config": "*",
+    "orbit-core/kernel": "*"
+  },
+  "extra": {
+    "merge-plugin": {
+      "include": [
+        "Packages/*/composer.json"
+      ],
+      "recurse": true,
+      "replace": true,
+      "ignore-duplicates": false,
+      "merge-dev": true,
+      "merge-extra": false,
+      "merge-extra-deep": false,
+      "merge-scripts": false
+    }
+  }
+}
