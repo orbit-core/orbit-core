@@ -6,9 +6,9 @@ namespace OrbitCoreTest\ConfigDomain\Domain;
 
 use Codeception\TestCase\Test;
 use OrbitCore\ConfigDomain\ConfigDomainConfig;
-use OrbitCore\ConfigDomain\Domain\ConfigDependencyProvider;
-use OrbitCore\ConfigDomain\Domain\ConfigDomainFactory;
-use OrbitCore\ConfigDomain\Domain\ConfigFacade;
+use OrbitCore\ConfigDomain\Domain\ConfigDomainDependencyProvider;
+use OrbitCore\ConfigDomain\Domain\ConfigDomainDomainDomainFactory;
+use OrbitCore\ConfigDomain\Domain\ConfigDomainDomainFacade;
 use OrbitCore\ConfigDomain\Domain\Container\ConfigContainer;
 use OrbitCoreTest\ConfigDomain\Domain\Hydrator\TestConfigDataHydratorPlugin;
 
@@ -25,8 +25,8 @@ class FacadeTest extends Test
 
         $facade = $this->tester->createFacade(
             [
-                ConfigDependencyProvider::CONFIG_CONTAINER => $container,
-                ConfigDependencyProvider::CONFIG_DATA_HYDRATOR_PLUGINS => [
+                ConfigDomainDependencyProvider::CONFIG_CONTAINER => $container,
+                ConfigDomainDependencyProvider::CONFIG_DATA_HYDRATOR_PLUGINS => [
                     new TestConfigDataHydratorPlugin()
                 ]
             ]

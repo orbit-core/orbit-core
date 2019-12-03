@@ -3,9 +3,9 @@
 namespace OrbitCoreTest\ConfigDomain;
 
 use Codeception\Stub;
-use OrbitCore\ConfigDomain\Domain\ConfigDependencyProvider;
-use OrbitCore\ConfigDomain\Domain\ConfigDomainFactory;
-use OrbitCore\ConfigDomain\Domain\ConfigFacade;
+use OrbitCore\ConfigDomain\Domain\ConfigDomainDependencyProvider;
+use OrbitCore\ConfigDomain\Domain\ConfigDomainDomainDomainFactory;
+use OrbitCore\ConfigDomain\Domain\ConfigDomainDomainFacade;
 use OrbitCore\Infrastructure\Container\ContainerInterface;
 
 /**
@@ -31,7 +31,7 @@ class ConfigDomainDomainTester extends \Codeception\Actor
     {
         $factory = $this->createFactory($dependencies);
 
-        $facade = new ConfigFacade();
+        $facade = new ConfigDomainDomainFacade();
         $facade->setResolver(
             $this->createResolver(
                 null,
@@ -46,16 +46,16 @@ class ConfigDomainDomainTester extends \Codeception\Actor
     /**
      * @param array $dependencies
      *
-     * @return \OrbitCore\ConfigDomain\Domain\ConfigDomainFactory
+     * @return \OrbitCore\ConfigDomain\Domain\ConfigDomainDomainDomainFactory
      * @throws \Exception
      */
     public function createFactory(array $dependencies = [])
     {
-        $factory = new ConfigDomainFactory();
+        $factory = new ConfigDomainDomainDomainFactory();
         $factory->setResolver(
             $this->createResolver(
                 null,
-                new ConfigDependencyProvider(),
+                new ConfigDomainDependencyProvider(),
                 null
             )
         );

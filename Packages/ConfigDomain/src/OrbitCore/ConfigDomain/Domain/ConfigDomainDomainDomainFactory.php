@@ -8,7 +8,7 @@ use OrbitCore\ConfigDomain\Domain\Hydrator\ConfigDataHydratorInterface;
 use OrbitCore\Infrastructure\Config\ContainterInterface;
 use OrbitCore\Infrastructure\Factory\Domain\AbstractDomainFactory;
 
-class ConfigDomainFactory extends AbstractDomainFactory implements ConfigDomainFactoryInterface
+class ConfigDomainDomainDomainFactory extends AbstractDomainFactory implements ConfigDomainDomainFactoryInterface
 {
     /**
      * @var \OrbitCore\Infrastructure\Config\ContainterInterface
@@ -17,14 +17,14 @@ class ConfigDomainFactory extends AbstractDomainFactory implements ConfigDomainF
 
     public function getContainer(): ContainterInterface
     {
-        return $this->getDependency(ConfigDependencyProvider::CONFIG_CONTAINER);
+        return $this->getDependency(ConfigDomainDependencyProvider::CONFIG_CONTAINER);
     }
 
     public function createHydrator(): ConfigDataHydratorInterface
     {
         return new ConfigDataHydrator(
             $this->getContainer(),
-            $this->getDependency(ConfigDependencyProvider::CONFIG_DATA_HYDRATOR_PLUGINS)
+            $this->getDependency(ConfigDomainDependencyProvider::CONFIG_DATA_HYDRATOR_PLUGINS)
         );
     }
 }

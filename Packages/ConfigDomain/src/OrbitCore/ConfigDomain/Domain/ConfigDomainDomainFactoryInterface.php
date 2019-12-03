@@ -6,7 +6,7 @@ namespace OrbitCore\ConfigDomain\Domain;
 
 use OrbitCore\Infrastructure\Config\ContainterInterface;
 
-interface ConfigDomainFactoryInterface
+interface ConfigDomainDomainFactoryInterface
 {
     public function getContainer(): ContainterInterface;
 }

@@ -8,7 +8,7 @@ use OrbitCore\ConfigDomain\Domain\Container\ConfigContainer;
 use OrbitCore\Infrastructure\Container\ContainerInterface;
 use OrbitCore\Infrastructure\Dependency\Domain\AbstractDomainDependencyProvider;
 
-class ConfigDependencyProvider extends AbstractDomainDependencyProvider
+class ConfigDomainDependencyProvider extends AbstractDomainDependencyProvider
 {
     public const CONFIG_CONTAINER = 'CONFIG_CONTAINER';
     public const CONFIG_DATA_HYDRATOR_PLUGINS = 'CONFIG_DATA_HYDRATOR_PLUGINS';
