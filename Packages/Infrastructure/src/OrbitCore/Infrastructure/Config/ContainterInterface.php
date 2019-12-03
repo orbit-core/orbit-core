@@ -7,7 +7,7 @@ namespace OrbitCore\Infrastructure\Config;
 interface ContainterInterface
 {
     /**
-     * @throws new \OrbitCore\Infrastructure\Config\Exception\ConfigNotExistException
+     * @throws \OrbitCore\Infrastructure\Config\Exception\ConfigNotExistException
      */
     public function get(string $name);
 

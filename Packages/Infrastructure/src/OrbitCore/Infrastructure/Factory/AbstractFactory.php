@@ -5,6 +5,7 @@ namespace OrbitCore\Infrastructure\Factory;
 
 
 use OrbitCore\Infrastructure\Config\ConfigInterface;
+use OrbitCore\Infrastructure\Container\ContainerInterface;
 use OrbitCore\Infrastructure\Resolver\ResolverInterface;
 
 abstract class AbstractFactory implements FactoryInterface
@@ -14,6 +15,11 @@ abstract class AbstractFactory implements FactoryInterface
      */
     protected $resolver;
 
+    /**
+     * @var \OrbitCore\Infrastructure\Container\ContainerInterface
+     */
+    protected $dependencyContainer;
+
     public function getConfig(): ConfigInterface
     {
         return $this->resolver->getConfigResolver()->resolve($this);
@@ -21,11 +27,16 @@ abstract class AbstractFactory implements FactoryInterface
 
     public function getDependency(string $name)
     {
-        return $this->resolver->getDependencyProviderResolver()->resolve($this);
+        return $this->dependencyContainer->get($name);
     }
 
     public function setResolver(ResolverInterface $resolver): void
     {
         $this->resolver = $resolver;
+    }
+
+    public function setDependencyContainer(ContainerInterface $dependencyContainer): void
+    {
+        $this->dependencyContainer = $dependencyContainer;
     }
 }

@@ -20,3 +20,4 @@ suites:
     modules:
       enabled:
         - Asserts
+        - \OrbitCoreTest\Infrastructure\_support\Helper\Resolver\ResolverHelper

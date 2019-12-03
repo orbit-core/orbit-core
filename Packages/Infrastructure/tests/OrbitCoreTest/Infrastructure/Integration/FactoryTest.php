@@ -4,11 +4,11 @@ declare(strict_types=1);
 namespace OrbitCoreTest\Infrastructure\Integration;
 
 
+use Codeception\Stub\Expected;
 use Codeception\TestCase\Test;
 use OrbitCore\Infrastructure\Config\ConfigInterface;
-use OrbitCore\Infrastructure\Dependency\ProviderInterface;
+use OrbitCore\Infrastructure\Container\ContainerInterface;
 use OrbitCore\Infrastructure\Factory\AbstractFactory;
-use OrbitCore\Infrastructure\Factory\FactoryInterface;
 
 /**
  * @group OrbitCore
@@ -35,11 +35,22 @@ class FactoryTest extends Test
 
     public function testGetDependency()
     {
+        $dependencies = $this->makeEmpty(
+            ContainerInterface::class,
+            [
+                'get' => Expected::once('bar')
+            ]
+        );
+
         $factory = $this->make(AbstractFactory::class);
         $factory->setResolver(
             $this->tester->createResolver()
         );
+        $factory->setDependencyContainer($dependencies);
 
-        $this->assertInstanceOf(ProviderInterface::class, $factory->getDependency('name'));
+        $this->assertSame(
+            'bar',
+            $factory->getDependency('foo')
+        );
     }
 }
