@@ -1,6 +1,6 @@
 {
-  "name": "orbit-core/_prefab",
-  "description": "Orbit Core: _prefab",
+  "name": "orbit-core/config-domain",
+  "description": "Orbit Core: ConfigDomain",
   "license": "MIT",
   "authors": [
     {
