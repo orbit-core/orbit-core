@@ -1,0 +1,22 @@
+namespace: OrbitCoreTest\_prefab
+
+paths:
+  tests: .
+  data: ../../_data
+  support: _support
+  log: ../../_output
+
+coverage:
+  enabled: true
+  remote: false
+  whitelist:
+    include:
+      - '../../../src/*'
+
+suites:
+  Domain:
+    path: Domain
+    class_name: _prefabDomainTester
+    modules:
+      enabled:
+        - Asserts

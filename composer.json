@@ -23,6 +23,7 @@
   },
   "replace": {
     "orbit-core/config": "*",
+    "orbit-core/infrastructure": "*",
     "orbit-core/kernel": "*"
   },
   "extra": {
