@@ -15,8 +15,8 @@ coverage:
 
 suites:
   Domain:
-    path: Domain
-    class_name: InfrastructureDomainTester
+    path: Integration
+    class_name: InfrastructureIntegrationTester
     modules:
       enabled:
         - Asserts

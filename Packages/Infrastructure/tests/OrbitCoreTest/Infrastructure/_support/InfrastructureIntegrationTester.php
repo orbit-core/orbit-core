@@ -16,9 +16,9 @@ namespace OrbitCoreTest\Infrastructure;
  *
  * @SuppressWarnings(PHPMD)
 */
-class InfrastructureDomainTester extends \Codeception\Actor
+class InfrastructureIntegrationTester extends \Codeception\Actor
 {
-    use _generated\InfrastructureDomainTesterActions;
+    use _generated\InfrastructureIntegrationTesterActions;
 
    /**
     * Define custom actions here

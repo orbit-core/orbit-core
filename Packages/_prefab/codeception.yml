@@ -1,7 +1,7 @@
 namespace: OrbitCoreTest
 
 include:
-  - tests/OrbitCore/*
+  - tests/OrbitCoreTest/*
 
 paths:
   tests: tests

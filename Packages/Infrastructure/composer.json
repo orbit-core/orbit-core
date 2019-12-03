@@ -16,12 +16,8 @@
   },
   "autoload": {
     "psr-0": {
-      "OrbitCore\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "OrbitCoreTest\\": "tests/OrbitCore/"
+      "OrbitCore\\": "src/",
+      "OrbitCoreTest\\": "tests/"
     }
   }
 }
