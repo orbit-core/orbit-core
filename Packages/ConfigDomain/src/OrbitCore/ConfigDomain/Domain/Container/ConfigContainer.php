@@ -4,7 +4,6 @@ declare(strict_types=1);
 namespace OrbitCore\ConfigDomain\Domain\Container;
 
 
-use OrbitCore\Infrastructure\Config\ContainterInterface;
 use OrbitCore\Infrastructure\Config\Exception\ConfigNotExistException;
 
 class ConfigContainer implements ContainterInterface, \ArrayAccess

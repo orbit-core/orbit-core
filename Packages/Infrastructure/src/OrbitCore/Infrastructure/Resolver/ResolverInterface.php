@@ -6,6 +6,7 @@ namespace OrbitCore\Infrastructure\Resolver;
 
 use OrbitCore\Infrastructure\Resolver\Config\ConfigResolverInterface;
 use OrbitCore\Infrastructure\Resolver\Dependency\DependencyProviderResolverInterface;
+use OrbitCore\Infrastructure\Resolver\Facade\FacadeResolverInterface;
 use OrbitCore\Infrastructure\Resolver\Factory\FactoryResolverInterface;
 
 interface ResolverInterface
@@ -15,4 +16,6 @@ interface ResolverInterface
     public function getDependencyProviderResolver(): DependencyProviderResolverInterface;
 
     public function getFactoryResolver(): FactoryResolverInterface;
+
+    public function getFacadeResolver(): FacadeResolverInterface;
 }

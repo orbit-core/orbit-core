@@ -4,8 +4,6 @@ declare(strict_types=1);
 namespace OrbitCore\Infrastructure\Config;
 
 
-use OrbitCore\Infrastructure\Config\Exception\ConfigNotExistException;
-
 class AbstractConfig implements ConfigInterface
 {
     /**
@@ -13,10 +11,7 @@ class AbstractConfig implements ConfigInterface
      */
     protected $container;
 
-    /**
-     * @param \OrbitCore\Infrastructure\Config\ConfigInterface $config
-     */
-    public function setConfig(ConfigInterface $config): void
+    public function setConfig(ConfigBridgeInterface $config): void
     {
         $this->container = $config;
     }

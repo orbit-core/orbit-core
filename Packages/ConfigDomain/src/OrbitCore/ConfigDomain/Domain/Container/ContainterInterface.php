@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace OrbitCore\Infrastructure\Config;
+namespace OrbitCore\ConfigDomain\Domain\Container;
 
 
 interface ContainterInterface

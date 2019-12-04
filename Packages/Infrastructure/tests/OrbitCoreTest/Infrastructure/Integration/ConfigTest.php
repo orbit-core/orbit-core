@@ -7,9 +7,7 @@ namespace OrbitCoreTest\Infrastructure\Integration;
 use Codeception\Stub\Expected;
 use Codeception\TestCase\Test;
 use OrbitCore\Infrastructure\Config\AbstractConfig;
-use OrbitCore\Infrastructure\Config\ConfigInterface;
-use OrbitCore\Infrastructure\Facade\AbstractFacade;
-use OrbitCore\Infrastructure\Factory\FactoryInterface;
+use OrbitCore\Infrastructure\Config\ContainterInterface;
 
 /**
  * @group OrbitCore
@@ -29,7 +27,7 @@ class ConfigTest extends Test
         $config = $this->make(AbstractConfig::class);
         $config->setConfig(
             $this->makeEmpty(
-                ConfigInterface::class,
+                ContainterInterface::class,
                 [
                     'get' => Expected::once('bar')
                 ]
