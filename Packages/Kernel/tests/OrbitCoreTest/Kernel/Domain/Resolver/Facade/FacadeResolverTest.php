@@ -35,10 +35,5 @@ class FacadeResolverTest extends Test
             KernelFacade::class,
             $facade
         );
-
-        $this->assertInstanceOf(
-            KernelConfig::class,
-            $facade->getConfig()
-        );
     }
 }

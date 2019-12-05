@@ -10,5 +10,4 @@ use OrbitCore\Infrastructure\Factory\FactoryInterface;
 interface FacadeInterface
 {
     public function getFactory(): FactoryInterface;
-    public function getConfig(): ConfigInterface;
 }

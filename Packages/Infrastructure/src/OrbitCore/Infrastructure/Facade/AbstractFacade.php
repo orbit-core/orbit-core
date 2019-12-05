@@ -15,11 +15,6 @@ abstract class AbstractFacade implements FacadeInterface
      */
     protected $resolver;
 
-    public function getConfig(): ConfigInterface
-    {
-        return $this->resolver->getConfigResolver()->resolve($this);
-    }
-
     public function getFactory(): FactoryInterface
     {
         return $this->resolver->getFactoryResolver()->resolve($this);

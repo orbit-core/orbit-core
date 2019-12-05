@@ -22,16 +22,6 @@ class FacadeTest extends Test
      */
     protected $tester;
 
-    public function testGetConfig()
-    {
-        $facade = $this->make(AbstractFacade::class);
-        $facade->setResolver(
-            $this->tester->createResolver()
-        );
-
-        $this->assertInstanceOf(ConfigInterface::class, $facade->getConfig());
-    }
-
     public function testGetFactory()
     {
         $facade = $this->make(AbstractFacade::class);
