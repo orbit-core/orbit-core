@@ -10,7 +10,9 @@ use OrbitCore\Infrastructure\Resolver\Facade\FacadeResolverInterface;
 use OrbitCore\Infrastructure\Resolver\Factory\FactoryResolverInterface;
 use OrbitCore\Infrastructure\Resolver\ResolverInterface;
 use OrbitCore\Kernel\Domain\Resolver\Config\ConfigResolver;
+use OrbitCore\Kernel\Domain\Resolver\Dependency\DependencyProviderResolver;
 use OrbitCore\Kernel\Domain\Resolver\Facade\FacadeResolver;
+use OrbitCore\Kernel\Domain\Resolver\Factory\FactoryResolver;
 
 class Resolver implements ResolverInterface
 {
@@ -19,21 +21,30 @@ class Resolver implements ResolverInterface
      */
     public function getConfigResolver(): ConfigResolverInterface
     {
-        return new ConfigResolver(new ClassMetadataReader());
+        return new ConfigResolver(
+            new ClassMetadataReader()
+        );
     }
 
     public function getDependencyProviderResolver(): DependencyProviderResolverInterface
     {
-        // TODO: Implement getDependencyProviderResolver() method.
+        return new DependencyProviderResolver(
+            new ClassMetadataReader()
+        );
     }
+
 
     public function getFacadeResolver(): FacadeResolverInterface
     {
-        return new FacadeResolver(new ClassMetadataReader());
+        return new FacadeResolver(
+            new ClassMetadataReader()
+        );
     }
 
     public function getFactoryResolver(): FactoryResolverInterface
     {
-        // TODO: Implement getFactoryResolver() method.
+        return new FactoryResolver(
+            new ClassMetadataReader()
+        );
     }
 }

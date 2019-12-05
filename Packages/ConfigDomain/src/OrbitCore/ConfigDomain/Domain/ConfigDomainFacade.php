@@ -8,9 +8,9 @@ use OrbitCore\Infrastructure\Facade\AbstractFacade;
 use OrbitCore\Infrastructure\Factory\FactoryInterface;
 
 /**
- * @method \OrbitCore\ConfigDomain\Domain\ConfigDomainDomainDomainFactory getFactory()
+ * @method \OrbitCore\ConfigDomain\Domain\ConfigDomainDomainFactory getFactory()
  */
-class ConfigDomainDomainFacade extends AbstractFacade implements ConfigDomainFacadeInterface
+class ConfigDomainFacade extends AbstractFacade implements ConfigDomainFacadeInterface
 {
     public function getConfigValue(string $name)
     {

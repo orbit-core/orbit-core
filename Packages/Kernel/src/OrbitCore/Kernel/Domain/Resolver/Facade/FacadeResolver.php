@@ -7,6 +7,7 @@ namespace OrbitCore\Kernel\Domain\Resolver\Facade;
 use OrbitCore\Infrastructure\Facade\FacadeInterface;
 use OrbitCore\Infrastructure\Resolver\Facade\FacadeResolverInterface;
 use OrbitCore\Kernel\Domain\Resolver\AbstractClassResolver;
+use OrbitCore\Kernel\Domain\Resolver\Resolver;
 
 class FacadeResolver extends AbstractClassResolver implements FacadeResolverInterface
 {
@@ -19,20 +20,23 @@ class FacadeResolver extends AbstractClassResolver implements FacadeResolverInte
      */
     public function resolve(object $source): FacadeInterface
     {
-        $matadata = $this->metadataReader->getMetadata($source);
+        $metadata = $this->metadataReader->getMetadata($source);
 
         if (!isset(static::$cache[$metadata['path']])) {
             $location = [
-                $matadata['package'],
-                $matadata['package']
+                $metadata['package'],
+                $metadata['package']
             ];
             $facade = $this->resolveClass(static::CLASS_PATTERN, ...$location);
 
             $facade = new $facade();
+            if (method_exists($facade, 'setResolver')) {
+                $facade->setResolver(new Resolver());
+            }
 
-            static::$cache[$matadata['path']] = $facade;
+            static::$cache[$metadata['path']] = $facade;
         }
 
-        return static::$cache[$matadata['path']];
+        return static::$cache[$metadata['path']];
     }
 }

@@ -10,9 +10,13 @@ use OrbitCore\Kernel\Domain\Resolver\Resolver;
 
 trait FacadeResolverTrait
 {
-    public function getFacade(): FacadeInterface
+    public function getFacade(object $source = null): FacadeInterface
     {
-        return $this->getFacadeResolver()->resolve($this);
+        if ($source === null) {
+            $source = $this;
+        }
+
+        return $this->getFacadeResolver()->resolve($source);
     }
 
     protected function getFacadeResolver(): FacadeResolverInterface

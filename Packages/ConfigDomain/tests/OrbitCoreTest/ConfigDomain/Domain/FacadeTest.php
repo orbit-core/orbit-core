@@ -7,8 +7,8 @@ namespace OrbitCoreTest\ConfigDomain\Domain;
 use Codeception\TestCase\Test;
 use OrbitCore\ConfigDomain\ConfigDomainConfig;
 use OrbitCore\ConfigDomain\Domain\ConfigDomainDependencyProvider;
-use OrbitCore\ConfigDomain\Domain\ConfigDomainDomainDomainFactory;
-use OrbitCore\ConfigDomain\Domain\ConfigDomainDomainFacade;
+use OrbitCore\ConfigDomain\Domain\ConfigDomainDomainFactory;
+use OrbitCore\ConfigDomain\Domain\ConfigDomainFacade;
 use OrbitCore\ConfigDomain\Domain\Container\ConfigContainer;
 use OrbitCoreTest\ConfigDomain\Domain\Hydrator\TestConfigDataHydratorPlugin;
 

@@ -10,9 +10,13 @@ use OrbitCore\Kernel\Domain\Resolver\Resolver;
 
 trait ConfigResolverTrait
 {
-    public function getConfig(): ConfigInterface
+    public function getConfig(object $source = null): ConfigInterface
     {
-        return $this->getConfigResolver()->resolve($this);
+        if ($source === null) {
+            $source = $this;
+        }
+
+        return $this->getConfigResolver()->resolve($source);
     }
 
     protected function getConfigResolver(): ConfigResolverInterface

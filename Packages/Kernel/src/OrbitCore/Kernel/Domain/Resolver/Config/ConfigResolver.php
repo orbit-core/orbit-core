@@ -20,20 +20,23 @@ class ConfigResolver extends AbstractClassResolver implements ConfigResolverInte
      */
     public function resolve(object $source): ConfigInterface
     {
-        $matadata = $this->metadataReader->getMetadata($source);
+        $metadata = $this->metadataReader->getMetadata($source);
 
         if (!isset(static::$cache[$metadata['path']])) {
             $location = [
-                $matadata['package'],
-                $matadata['package']
+                $metadata['package'],
+                $metadata['package']
             ];
             $configClass = $this->resolveClass(static::CLASS_PATTERN, ...$location);
 
             $config = new $configClass();
+            if (method_exists($config, 'setConfig')) {
+                $config->setConfig(ConfigAdapter::getInstance());
+            }
 
-            static::$cache[$matadata['path']] = $config;
+            static::$cache[$metadata['path']] = $config;
         }
 
-        return static::$cache[$matadata['path']];
+        return static::$cache[$metadata['path']];
     }
 }

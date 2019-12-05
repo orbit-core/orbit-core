@@ -3,15 +3,15 @@ declare(strict_types=1);
 
 namespace OrbitCore\ConfigDomain\Domain;
 
+use OrbitCore\ConfigDomain\Domain\Container\ContainterInterface;
 use OrbitCore\ConfigDomain\Domain\Hydrator\ConfigDataHydrator;
 use OrbitCore\ConfigDomain\Domain\Hydrator\ConfigDataHydratorInterface;
-use OrbitCore\Infrastructure\Config\ContainterInterface;
 use OrbitCore\Infrastructure\Factory\Domain\AbstractDomainFactory;
 
-class ConfigDomainDomainDomainFactory extends AbstractDomainFactory implements ConfigDomainDomainFactoryInterface
+class ConfigDomainDomainFactory extends AbstractDomainFactory implements ConfigDomainDomainFactoryInterface
 {
     /**
-     * @var \OrbitCore\Infrastructure\Config\ContainterInterface
+     * @var ContainterInterface
      */
     protected $container;
 

@@ -10,6 +10,8 @@ use OrbitCore\Kernel\KernelConfig;
 
 abstract class AbstractClassResolver
 {
+    public static $namespaceConfig;
+
     /**
      * @var \OrbitCore\Kernel\Domain\Resolver\ClassMetadataReaderInterface
      */
@@ -31,7 +33,16 @@ abstract class AbstractClassResolver
         array $namespaces = null
     ) {
         $this->metadataReader = $metadataReader;
-        $this->namespaces = $namespaces ?: ConfigAdapter::getConfig()->getConfigValue(KernelConfig::KERNEL_NAMESPACES);
+        $this->namespaces = $namespaces ?: $this->getConfigNamespaces();
+    }
+
+    protected function getConfigNamespaces()
+    {
+        if (static::$namespaceConfig === null) {
+            static::$namespaceConfig = ConfigAdapter::getNamespaces();
+        }
+
+        return static::$namespaceConfig;
     }
 
     /**

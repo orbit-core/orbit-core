@@ -4,12 +4,12 @@ declare(strict_types=1);
 namespace OrbitCore\ConfigDomain\Domain\Hydrator;
 
 
-use OrbitCore\Infrastructure\Config\ContainterInterface;
+use OrbitCore\ConfigDomain\Domain\Container\ContainterInterface;
 
 class ConfigDataHydrator implements ConfigDataHydratorInterface
 {
     /**
-     * @var \OrbitCore\Infrastructure\Config\ContainterInterface
+     * @var \OrbitCore\ConfigDomain\Domain\Container\ContainterInterface
      */
     protected $container;
 
@@ -21,7 +21,7 @@ class ConfigDataHydrator implements ConfigDataHydratorInterface
     /**
      * ConfigDataHydrator constructor.
      *
-     * @param \OrbitCore\Infrastructure\Config\ContainterInterface $container
+     * @param \OrbitCore\ConfigDomain\Domain\Container\ContainterInterface $container
      * @param \OrbitCore\ConfigDomain\Domain\Plugin\ConfigDataHydratorPluginInterface[] $hydratorPlugins
      */
     public function __construct(ContainterInterface $container, array $hydratorPlugins)
