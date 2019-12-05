@@ -7,9 +7,9 @@ namespace OrbitCore\Kernel\Domain\Resolver\Factory;
 use OrbitCore\Infrastructure\Container\ContainerInterface;
 use OrbitCore\Infrastructure\Factory\FactoryInterface;
 use OrbitCore\Infrastructure\Resolver\Factory\FactoryResolverInterface;
+use OrbitCore\Kernel\Domain\KernelFacade;
 use OrbitCore\Kernel\Domain\Resolver\AbstractClassResolver;
 use OrbitCore\Kernel\Domain\Resolver\Dependency\DependencyProviderResolverTrait;
-use OrbitCore\Kernel\Domain\Resolver\Facade\FacadeResolverTrait;
 use OrbitCore\Kernel\Domain\Resolver\Resolver;
 
 /**
@@ -17,7 +17,7 @@ use OrbitCore\Kernel\Domain\Resolver\Resolver;
  */
 class FactoryResolver extends AbstractClassResolver implements FactoryResolverInterface
 {
-    use FacadeResolverTrait, DependencyProviderResolverTrait;
+    use DependencyProviderResolverTrait;
 
     protected const CLASS_PATTERN = '%s\\%s\\%s\\%s%sFactory';
 
@@ -58,7 +58,10 @@ class FactoryResolver extends AbstractClassResolver implements FactoryResolverIn
 
     protected function getDependencyContainer(object $source): ContainerInterface
     {
-        $container = $kernelFacade = $this->getFacade()->getDependencyContainer();
+        $facade = (new KernelFacade());
+        $facade->setResolver(new Resolver());
+
+        $container = $facade->getDependencyContainer();
         return $this->getDependencyProvider($source)->provideDependencies($container);
     }
 }

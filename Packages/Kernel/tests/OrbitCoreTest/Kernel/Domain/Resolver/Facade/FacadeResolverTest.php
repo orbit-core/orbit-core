@@ -10,9 +10,17 @@ use OrbitCore\Kernel\Domain\Resolver\ClassMetadataReader;
 use OrbitCore\Kernel\Domain\Resolver\Facade\FacadeResolver;
 use OrbitCore\Kernel\KernelConfig;
 
+/**
+ * @group OrbitCore
+ * @group Kernel
+ * @group Domain
+ * @group Resolver
+ * @group Facade
+ * @group FacadeResolverTest
+ */
 class FacadeResolverTest extends Test
 {
-    public function testResolveConfig()
+    public function testResolveFacade()
     {
         $resolver = new FacadeResolver(
             new ClassMetadataReader(),

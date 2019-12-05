@@ -10,7 +10,7 @@ use OrbitCore\Kernel\Domain\Resolver\AbstractClassResolver;
 
 class DependencyProviderResolver extends AbstractClassResolver implements DependencyProviderResolverInterface
 {
-    protected const CLASS_PATTERN = '%s\\%s\\%s\\%s%sDependencyProvider';
+    protected const CLASS_PATTERN = '%s\\%s\\%s\\%sDependencyProvider';
 
     protected static $cache = [];
 
@@ -25,8 +25,7 @@ class DependencyProviderResolver extends AbstractClassResolver implements Depend
             $location = [
                 $metadata['package'],
                 $metadata['layer'],
-                $metadata['package'],
-                $metadata['layer']
+                $metadata['package']
             ];
             $dependencyProviderClass = $this->resolveClass(static::CLASS_PATTERN, ...$location);
 
