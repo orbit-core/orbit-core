@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace OrbitCore\DataTransfer\Domain\Parser\Plugin;
 
 
-use OrbitCore\DataTransfer\Domain\Generator\GeneratorInterface;
+use OrbitCore\DataTransfer\Domain\Builder\TransferBuilderInterface;
 
 interface SchemaFileParserPluginInterface
 {
-    public function parseSchemaFile(string $schemaFilePath, GeneratorInterface $generator): GeneratorInterface;
+    public function parseSchemaFile(string $schemaFilePath, TransferBuilderInterface $generator): TransferBuilderInterface;
 }
