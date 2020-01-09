@@ -46,4 +46,62 @@ class DataTransferFacadeTest extends Test
         $this->assertFileNotExists(__DIR__ . '/Generate/SecondTestDto.php');
     }
 
+    public function testGenerateAndDeleteDtoWithOneConfig()
+    {
+        $config = new DataTransferTestConfig();
+        $facade = $this->tester->createFacade(
+            [
+                DataTransferDomainDependencyProvider::DATA_TRANSFER_CONFIG_PLUGINS => [
+                    new DataTransferTestConfig()
+                ]
+            ]
+        );
+
+        $facade->generateDataTransferObjectsByConfig($config);
+
+        $this->assertFileExists(__DIR__ . '/Generate/ExampleDto.php');
+        $this->assertFileExists(__DIR__ . '/Generate/SecondTestDto.php');
+
+        $this->assertTrue(
+            class_exists(ExampleDto::class)
+        );
+        $this->assertTrue(
+            class_exists(SecondTestDto::class)
+        );
+
+
+        $facade->deleteDataTransferObjects();
+
+        $this->assertFileNotExists(__DIR__ . '/Generate/ExampleDto.php');
+        $this->assertFileNotExists(__DIR__ . '/Generate/SecondTestDto.php');
+    }
+
+    public function testDtoFunctionality()
+    {
+        $facade = $this->tester->createFacade(
+            [
+                DataTransferDomainDependencyProvider::DATA_TRANSFER_CONFIG_PLUGINS => [
+                    new DataTransferTestConfig()
+                ]
+            ]
+        );
+
+        $facade->generateDataTransferObjects();
+
+        $example = new ExampleDto();
+        $example->setActive(true)
+            ->setName('Test')
+            ->setCompany(null)
+            ->addLike('Soccer');
+
+        $this->assertEquals(
+            [
+                'Soccer'
+            ],
+            $example->getLike()
+        );
+
+        $facade->deleteDataTransferObjects();
+    }
+
 }

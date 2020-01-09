@@ -12,7 +12,8 @@ class DataTransferWriter implements DataTransferWriterInterface
 {
     protected const TEMPLATE_TRANSFER = 'transfer.tpl';
     protected const TEMPLATE_PROPERTY = 'property.tpl';
-    protected const TEMPLATE_METHODS  = 'methods.tpl';
+    protected const TEMPLATE_METHODS = 'methods.tpl';
+    protected const TEMPLATE_COLLECTION = 'collection.tpl';
     protected const FILE_EXTENSION = 'Dto.php';
 
     protected const VALID_SIMPLE_TYPES = [
@@ -55,7 +56,8 @@ class DataTransferWriter implements DataTransferWriterInterface
 
             $config = $builder->transfer($transferName)->getConfig();
 
-            $transferContent = $this->fetchTransferContent($properties, $config, $propertiesContent, $methodsContent, $transferName);
+            $transferContent = $this->fetchTransferContent($properties, $config, $propertiesContent, $methodsContent,
+                $transferName);
 
             $filename = $transferName . static::FILE_EXTENSION;
             file_put_contents($config->getGeneratePath() . '/' . $filename, $transferContent);
@@ -68,16 +70,29 @@ class DataTransferWriter implements DataTransferWriterInterface
         string $propertyName,
         array $propertyData
     ): string {
-        $methodsContent .= $this->fetchContent($config, static::TEMPLATE_METHODS, [
+        $data = [
             'propertyName' => $propertyName,
-            'propertyType' => $propertyData['isCollection']
-                              === true ? 'array' : $this->getValidType($propertyData['type'], $config),
+            'propertyType' => $propertyData['isCollection'] === true ? 'array' : $this->getValidType($propertyData['type'], $config),
             'propertyTypeDoc' => $this->getValidType($propertyData['type'], $config),
             'propertyTypeDocPrefix' => $propertyData['allowNull'] === true ? '?' : '',
             'propertyTypeDocSuffix' => $propertyData['isCollection'] === true ? '[]' : '',
-            'propertyTypePrefix' => ($propertyData['allowNull'] === true
-                                         && $propertyData['isCollection'] !== true) ? '?' : ''
-        ]);
+            'propertyTypePrefix' => ($propertyData['allowNull'] === true && $propertyData['isCollection'] !== true) ? '?' : ''
+        ];
+
+        $methodsContent .= $this->fetchContent(
+            $config,
+            static::TEMPLATE_METHODS,
+            $data
+        );
+
+        if ($propertyData['isCollection']) {
+            $methodsContent .= $this->fetchContent(
+                $config,
+                static::TEMPLATE_COLLECTION,
+                $data
+            );
+        }
+
         return $methodsContent;
     }
 
