@@ -22,7 +22,7 @@ class DataTransferTestConfig implements DataTransferConfigInterface
 
     public function getNamespace(): string
     {
-        return '\\OrbitCoreTest\\DataTransfer\\Domain\\Generate';
+        return 'OrbitCoreTest\\DataTransfer\\Domain\\Generate';
     }
 
     public function getParser(): SchemaFileParserPluginInterface

@@ -1,28 +1,30 @@
-/**
- * @return {% propertyTypeDoc %}
- */
-public function get{% propertyName %}(): {% propertyTypePrefix %}{% propertyType %}{% propertyTypeSuffix %}
-{
-    return $this->{% propertyName %};
-}
-
-/**
-* @param {% propertyTypeDoc %} $value
-*/
-public function set{% propertyName %}({% propertyTypePrefix %}{% propertyType %}{% propertyTypeSuffix %} $value): self
-{
-    if ($this->{% propertyName %} !== $value) {
-        $this->modified = true;
+    /**
+     * @return {% propertyTypeDocPrefix %}{% propertyTypeDoc %}{% propertyTypeDocSuffix %}
+     */
+    public function get{% propertyName %}(): {% propertyTypePrefix %}{% propertyType %}
+    {
+        return $this->{% propertyName %};
     }
 
-    $this->{% propertyName %} = $value;
+    /**
+     * @param {% propertyTypeDocPrefix %}{% propertyTypeDoc %}{% propertyTypeDocSuffix %} $value
+     *
+     * @return self
+     */
+    public function set{% propertyName %}({% propertyTypePrefix %}{% propertyType %} $value): self
+    {
+        if ($this->{% propertyName %} !== $value) {
+            $this->setModified('{% propertyName %}');
+        }
 
-    return $this;
-}
+        $this->{% propertyName %} = $value;
 
-public function require{% propertyName %}(): void
-{
-    if ($this->{% propertyName %} !== null) {
-        throw new RequiredPropertyNotDefinedException('Required property {% propertyName %} is not defined');
+        return $this;
     }
-}
+
+    public function require{% propertyName %}(): void
+    {
+        if ($this->{% propertyName %} === null) {
+            throw new RequiredPropertyNotDefinedException('Required property {% propertyName %} is not defined');
+        }
+    }

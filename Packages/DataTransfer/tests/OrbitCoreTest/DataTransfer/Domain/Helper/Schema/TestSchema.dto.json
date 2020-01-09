@@ -1,7 +1,7 @@
 {
   "transfers": [
     {
-      "name": "exampleDto",
+      "name": "Example",
       "properties": [
         {
           "name": "Name",
@@ -24,11 +24,11 @@
       ]
     },
     {
-      "name": "secondTestDto",
+      "name": "SecondTest",
       "properties": [
         {
-          "name": "employees",
-          "type": "exampleDto",
+          "name": "Employees",
+          "type": "Example",
           "collection": true
         }
       ]

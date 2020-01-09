@@ -8,6 +8,8 @@ use Codeception\TestCase\Test;
 use OrbitCore\DataTransfer\Domain\Builder\BuilderFactory;
 use OrbitCore\DataTransfer\Domain\Builder\TransferBuilder;
 use OrbitCore\DataTransfer\Domain\Processor\Config\DataTransferConfigInterface;
+use OrbitCoreTest\DataTransfer\Domain\Generate\ExampleDto;
+use OrbitCoreTest\DataTransfer\Domain\Generate\SecondTestDto;
 
 /**
  * @group OrbitCore
@@ -25,6 +27,7 @@ class TransferBuilderTest extends Test
             new BuilderFactory()
         );
 
+        /** @var \OrbitCore\DataTransfer\Domain\Processor\Config\DataTransferConfigInterface $config */
         $config = $this->makeEmpty(DataTransferConfigInterface::class);
 
         $transferBuilder->transfer('testOne', $config)->property('propOne')->setType('int');

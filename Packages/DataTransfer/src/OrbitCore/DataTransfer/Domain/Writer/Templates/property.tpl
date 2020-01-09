@@ -1,4 +1,4 @@
-/**
- * @var {% propertyTypePrefix %}{% propertyType %}{% propertyTypeSuffix %}
- */
-private {% propertyName %} = null;
+    /**
+     * @var {% propertyTypePrefix %}{% propertyType %}{% propertyTypeSuffix %}
+     */
+    private ${% propertyName %} = null;

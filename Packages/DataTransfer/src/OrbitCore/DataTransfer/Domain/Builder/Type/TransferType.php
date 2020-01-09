@@ -37,6 +37,7 @@ class TransferType implements TransferTypeInterface
     public function __construct(string $name, DataTransferConfigInterface $config)
     {
         $this->name = $name;
+        $this->config = $config;
         $this->properties = [];
     }
 

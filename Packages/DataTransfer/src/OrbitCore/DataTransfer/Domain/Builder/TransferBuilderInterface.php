@@ -16,5 +16,5 @@ interface TransferBuilderInterface
      *
      * @return \OrbitCore\DataTransfer\Domain\Builder\Type\TransferTypeInterface
      */
-    public function transfer(string $name, DataTransferConfigInterface $config): TypeInterface;
+    public function transfer(string $name, DataTransferConfigInterface $config = null): TypeInterface;
 }

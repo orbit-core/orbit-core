@@ -22,8 +22,8 @@ class DeleteProcess implements DeleteProcessInterface
     public function deleteDataTransferObjects(): void
     {
         foreach ($this->configPlugins as $configPlugin) {
-            foreach ($configPlugin->getFinder()->getSchemaFiles() as $schemaFile) {
-                unlink($schemaFile);
+            foreach (glob($configPlugin->getGeneratePath() . '/*Dto.php') as $dtoFile) {
+                unlink($dtoFile);
             }
         }
     }

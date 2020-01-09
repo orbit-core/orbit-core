@@ -41,12 +41,7 @@ class TransferBuilder implements TransferBuilderInterface
         );
     }
 
-    /**
-     * @param string $name
-     *
-     * @return \OrbitCore\DataTransfer\Domain\Builder\Type\TransferTypeInterface
-     */
-    public function transfer(string $name, DataTransferConfigInterface $config): TypeInterface
+    public function transfer(string $name, DataTransferConfigInterface $config = null): TypeInterface
     {
         if (!isset($this->transferObjects[$name])) {
             $this->transferObjects[$name] = $this->factory->createTransferType($name, $config);

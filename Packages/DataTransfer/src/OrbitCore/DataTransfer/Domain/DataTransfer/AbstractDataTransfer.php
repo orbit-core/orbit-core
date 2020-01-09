@@ -25,6 +25,12 @@ abstract class AbstractDataTransfer implements DataTransferInterface
         return $this->modified;
     }
 
+    public function setModified(string $property): void
+    {
+        $this->modified = true;
+        $this->modifiedProperties[] = $property;
+    }
+
     public function modifiedToArray(): array
     {
         // TODO: Implement modifiedToArray() method.

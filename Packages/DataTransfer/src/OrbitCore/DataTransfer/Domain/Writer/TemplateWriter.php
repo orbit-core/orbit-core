@@ -6,7 +6,7 @@ namespace OrbitCore\DataTransfer\Domain\Writer;
 
 class TemplateWriter implements TemplateWriterInterface
 {
-    protected const REPLACE_PATTERN = '{\% %s \%}';
+    protected const REPLACE_PATTERN = '{%% %s %%}';
 
     public function fetchContent(string $templateFile, array $data): string
     {
@@ -25,11 +25,12 @@ class TemplateWriter implements TemplateWriterInterface
     protected function replaceData(array $data, string $content): string
     {
         $fields = [];
+        $values = [];
         foreach ($data as $field => $value) {
             $fields[] = sprintf(static::REPLACE_PATTERN, $field);
+            $values[] = $value;
         }
-        $content = str_replace($fields, array_values($data), $content);
 
-        return $content;
+        return str_replace($fields, $values, $content);
     }
 }
