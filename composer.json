@@ -23,6 +23,7 @@
   "replace": {
     "orbit-core/config": "*",
     "orbit-core/config-domain": "*",
+    "orbit-core/data-transfer": "*",
     "orbit-core/infrastructure": "*",
     "orbit-core/kernel": "*"
   },

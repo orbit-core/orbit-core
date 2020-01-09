@@ -4,9 +4,9 @@ declare(strict_types=1);
 namespace OrbitCore\DataTransfer\Domain\Builder;
 
 
-use OrbitCore\DataTransfer\Domain\Builder\Type\PropertyTypeInterface;
 use OrbitCore\DataTransfer\Domain\Builder\Type\TransferTypeInterface;
 use OrbitCore\DataTransfer\Domain\Builder\Type\TypeInterface;
+use OrbitCore\DataTransfer\Domain\Processor\Config\DataTransferConfigInterface;
 
 class TransferBuilder implements TransferBuilderInterface
 {
@@ -46,10 +46,10 @@ class TransferBuilder implements TransferBuilderInterface
      *
      * @return \OrbitCore\DataTransfer\Domain\Builder\Type\TransferTypeInterface
      */
-    public function transfer(string $name): TypeInterface
+    public function transfer(string $name, DataTransferConfigInterface $config): TypeInterface
     {
         if (!isset($this->transferObjects[$name])) {
-            $this->transferObjects[$name] = $this->factory->createTransferType($name);
+            $this->transferObjects[$name] = $this->factory->createTransferType($name, $config);
         }
 
         return $this->transferObjects[$name];

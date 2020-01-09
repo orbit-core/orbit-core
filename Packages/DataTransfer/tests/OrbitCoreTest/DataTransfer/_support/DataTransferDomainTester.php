@@ -1,6 +1,13 @@
 <?php
 namespace OrbitCoreTest\DataTransfer;
 
+use Codeception\Stub;
+use OrbitCore\DataTransfer\DataTransferConfig;
+use OrbitCore\DataTransfer\Domain\DataTransferDomainDependencyProvider;
+use OrbitCore\DataTransfer\Domain\DataTransferDomainFactory;
+use OrbitCore\DataTransfer\Domain\DataTransferFacade;
+use OrbitCore\Infrastructure\Container\ContainerInterface;
+
 /**
  * Inherited Methods
  * @method void wantToTest($text)
@@ -23,4 +30,61 @@ class DataTransferDomainTester extends \Codeception\Actor
    /**
     * Define custom actions here
     */
+    public function createFacade(array $dependencies = [])
+    {
+        $factory = $this->createFactory($dependencies);
+
+        $facade = new DataTransferFacade();
+        $facade->setResolver(
+            $this->createResolver(
+                null,
+                null,
+                $factory
+            )
+        );
+
+        return $facade;
+    }
+
+    /**
+     * @param array $dependencies
+     *
+     * @return \OrbitCore\DataTransfer\Domain\DataTransferDomainFactory
+     * @throws \Exception
+     */
+    public function createFactory(array $dependencies = [])
+    {
+        $config = Stub::make(
+            DataTransferConfig::class,
+            [
+                'get' => function() {
+                    return 'test';
+                }
+            ]
+        );
+
+        $factory = new DataTransferDomainFactory();
+        $factory->setResolver(
+            $this->createResolver(
+                $config,
+                new DataTransferDomainDependencyProvider(),
+                null
+            )
+        );
+
+        /** @var \OrbitCore\Infrastructure\Container\ContainerInterface $container */
+        $container = Stub::makeEmpty(
+            ContainerInterface::class,
+            [
+                'get' => function ($name) use ($dependencies) {
+                    return $dependencies[$name] ?? null;
+                }
+            ]
+        );
+
+
+        $factory->setDependencyContainer($container);
+
+        return $factory;
+    }
 }

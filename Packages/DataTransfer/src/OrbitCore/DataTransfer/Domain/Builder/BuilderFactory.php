@@ -7,6 +7,7 @@ namespace OrbitCore\DataTransfer\Domain\Builder;
 use OrbitCore\DataTransfer\Domain\Builder\Type\PropertyType;
 use OrbitCore\DataTransfer\Domain\Builder\Type\TransferType;
 use OrbitCore\DataTransfer\Domain\Builder\Type\TypeInterface;
+use OrbitCore\DataTransfer\Domain\Processor\Config\DataTransferConfigInterface;
 
 class BuilderFactory implements BuilderFactoryInterface
 {
@@ -15,8 +16,8 @@ class BuilderFactory implements BuilderFactoryInterface
         return (new PropertyType($name))->setBuilderFactory($this);
     }
 
-    public function createTransferType(string $name): TypeInterface
+    public function createTransferType(string $name, DataTransferConfigInterface $config): TypeInterface
     {
-        return (new TransferType($name))->setBuilderFactory($this);
+        return (new TransferType($name, $config))->setBuilderFactory($this);
     }
 }

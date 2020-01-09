@@ -12,6 +12,7 @@
     "orbit-core/infrastructure": "dev-master"
   },
   "require-dev": {
+    "ext-json": "*",
     "codeception/codeception": "^3.0"
   },
   "autoload": {

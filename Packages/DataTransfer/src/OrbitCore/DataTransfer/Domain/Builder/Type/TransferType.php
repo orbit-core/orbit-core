@@ -5,6 +5,7 @@ namespace OrbitCore\DataTransfer\Domain\Builder\Type;
 
 
 use OrbitCore\DataTransfer\Domain\Builder\BuilderFactoryInterface;
+use OrbitCore\DataTransfer\Domain\Processor\Config\DataTransferConfigInterface;
 
 class TransferType implements TransferTypeInterface
 {
@@ -24,14 +25,24 @@ class TransferType implements TransferTypeInterface
     protected $name;
 
     /**
+     * @var \OrbitCore\DataTransfer\Domain\Processor\Config\DataTransferConfigInterface
+     */
+    protected $config;
+
+    /**
      * TransferType constructor.
      *
      * @param string $name
      */
-    public function __construct(string $name)
+    public function __construct(string $name, DataTransferConfigInterface $config)
     {
         $this->name = $name;
         $this->properties = [];
+    }
+
+    public function getConfig(): DataTransferConfigInterface
+    {
+        return $this->config;
     }
 
     public function getData(): array

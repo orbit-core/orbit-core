@@ -7,6 +7,7 @@ namespace OrbitCoreTest\DataTransfer\Domain\Builder;
 use Codeception\TestCase\Test;
 use OrbitCore\DataTransfer\Domain\Builder\BuilderFactory;
 use OrbitCore\DataTransfer\Domain\Builder\TransferBuilder;
+use OrbitCore\DataTransfer\Domain\Processor\Config\DataTransferConfigInterface;
 
 /**
  * @group OrbitCore
@@ -24,10 +25,12 @@ class TransferBuilderTest extends Test
             new BuilderFactory()
         );
 
-        $transferBuilder->transfer('testOne')->property('propOne')->setType('int');
-        $transferBuilder->transfer('testOne')->property('propTwo')->setType('bool')->allowNull();
-        $transferBuilder->transfer('testOne')->property('propThree')->setType('string')->isCollection();
-        $transferBuilder->transfer('testTwo')->property('secondTransferProperty')->setType('testOne')->allowNull();
+        $config = $this->makeEmpty(DataTransferConfigInterface::class);
+
+        $transferBuilder->transfer('testOne', $config)->property('propOne')->setType('int');
+        $transferBuilder->transfer('testOne', $config)->property('propTwo')->setType('bool')->allowNull();
+        $transferBuilder->transfer('testOne', $config)->property('propThree')->setType('string')->isCollection();
+        $transferBuilder->transfer('testTwo', $config)->property('secondTransferProperty')->setType('testOne')->allowNull();
 
         $this->assertEquals(
             [

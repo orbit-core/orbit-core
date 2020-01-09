@@ -1,0 +1,37 @@
+{
+  "transfers": [
+    {
+      "name": "exampleDto",
+      "properties": [
+        {
+          "name": "Name",
+          "type": "string"
+        },
+        {
+          "name": "Active",
+          "type": "bool"
+        },
+        {
+          "name": "Company",
+          "type": "string",
+          "allowNull": true
+        },
+        {
+          "name": "Like",
+          "type": "string",
+          "collection": true
+        }
+      ]
+    },
+    {
+      "name": "secondTestDto",
+      "properties": [
+        {
+          "name": "employees",
+          "type": "exampleDto",
+          "collection": true
+        }
+      ]
+    }
+  ]
+}
