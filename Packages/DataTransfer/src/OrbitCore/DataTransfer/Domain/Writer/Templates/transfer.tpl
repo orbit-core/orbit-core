@@ -10,7 +10,7 @@ final class {% transferName %}Dto extends AbstractDataTransfer
 {% properties %}
 {% methods %}
 
-    public function getFields(): array
+    public function getProperties(): array
     {
         return {% transferData %};
     }

@@ -8,7 +8,7 @@ interface DataTransferInterface
 {
     public function fromArray(array $data): void;
 
-    public function getFields(): array;
+    public function getProperties(): array;
 
     public function isModified(): bool;
 

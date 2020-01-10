@@ -18,7 +18,7 @@ abstract class AbstractDataTransfer implements DataTransferInterface
         // TODO: Implement fromArray() method.
     }
 
-    abstract public function getFields(): array;
+    abstract public function getProperties(): array;
 
     public function isModified(): bool
     {
@@ -33,11 +33,62 @@ abstract class AbstractDataTransfer implements DataTransferInterface
 
     public function modifiedToArray(): array
     {
-        // TODO: Implement modifiedToArray() method.
+        return $this->convertPropertiesToArray($this->modifiedProperties);
     }
 
     public function toArray(): array
     {
-        // TODO: Implement toArray() method.
+        return $this->convertPropertiesToArray(array_keys($this->getProperties()));
+    }
+
+    protected function convertPropertiesToArray(array $fields): array
+    {
+        $data = [];
+        foreach ($fields as $fieldName) {
+            $data[$fieldName] = $this->valueToArray($this->{ $fieldName });
+        }
+
+        return $data;
+    }
+
+    /**
+     * @param $value
+     *
+     * @return array
+     */
+    protected function convertFromArray($value): array
+    {
+        $list = [];
+        foreach ($value as $item) {
+            $list[] = $this->valueToArray($item);
+        }
+
+        $value = $list;
+        return $value;
+    }
+
+    protected function convertFromObject(object $value)
+    {
+        if ($value instanceof DataTransferInterface) {
+            return $value->toArray();
+        }
+
+        return $value;
+    }
+
+    /**
+     * @param mixed $value
+     *
+     * @return mixed
+     */
+    protected function valueToArray($value)
+    {
+        if (is_array($value)) {
+            $value = $this->convertFromArray($value);
+        } elseif (is_object($value)) {
+            $value = $this->convertFromObject($value);
+        }
+
+        return $value;
     }
 }

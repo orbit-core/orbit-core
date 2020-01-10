@@ -5,6 +5,7 @@ namespace OrbitCoreTest\DataTransfer\Domain;
 
 
 use Codeception\TestCase\Test;
+use OrbitCore\DataTransfer\Domain\DataTransfer\RequiredPropertyNotDefinedException;
 use OrbitCore\DataTransfer\Domain\DataTransferDomainDependencyProvider;
 use OrbitCoreTest\DataTransfer\Domain\Generate\ExampleDto;
 use OrbitCoreTest\DataTransfer\Domain\Generate\SecondTestDto;
@@ -109,7 +110,46 @@ class DataTransferFacadeTest extends Test
             $secondDto->getEmployees()
         );
 
+        $this->assertEquals(
+            [
+                'Employees' => [
+                    [
+                        'Name' => 'Test',
+                        'Active' => true,
+                        'Company' => null,
+                        'Like' => [
+                            'Soccer'
+                        ],
+                    ]
+                ]
+            ],
+            $secondDto->toArray()
+        );
+
         $facade->deleteDataTransferObjects();
     }
 
+    public function testRequired()
+    {
+        $facade = $this->tester->createFacade(
+            [
+                DataTransferDomainDependencyProvider::DATA_TRANSFER_CONFIG_PLUGINS => [
+                    new DataTransferTestConfig()
+                ]
+            ]
+        );
+
+        $facade->generateDataTransferObjects();
+
+        $example = new ExampleDto();
+        $facade->deleteDataTransferObjects();
+
+        $example->setName('Test');
+
+        $this->expectException(RequiredPropertyNotDefinedException::class);
+        $this->expectExceptionMessage('Required property Active is not defined');
+
+        $example->requireName();
+        $example->requireActive();
+    }
 }
