@@ -72,6 +72,7 @@ class DataTransferWriter implements DataTransferWriterInterface
     ): string {
         $data = [
             'propertyName' => $propertyName,
+            'propertySingleName' => $propertyData['singleName'],
             'propertyType' => $propertyData['isCollection'] === true ? 'array' : $this->getValidType($propertyData['type'], $config),
             'propertyTypeDoc' => $this->getValidType($propertyData['type'], $config),
             'propertyTypeDocPrefix' => $propertyData['allowNull'] === true ? '?' : '',

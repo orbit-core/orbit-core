@@ -101,6 +101,14 @@ class DataTransferFacadeTest extends Test
             $example->getLike()
         );
 
+        $secondDto = new SecondTestDto();
+        $secondDto->addEmployee($example);
+
+        $this->assertEquals(
+            [$example],
+            $secondDto->getEmployees()
+        );
+
         $facade->deleteDataTransferObjects();
     }
 

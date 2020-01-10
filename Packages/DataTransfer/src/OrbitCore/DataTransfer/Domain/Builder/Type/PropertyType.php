@@ -17,6 +17,7 @@ class PropertyType implements PropertyTypeInterface
      * @var array
      */
     protected $data = [
+        'singleName' => '',
         'allowNull' => false,
         'isCollection' => false,
         'type' => 'string'
@@ -32,6 +33,7 @@ class PropertyType implements PropertyTypeInterface
     public function __construct($name)
     {
         $this->name = $name;
+        $this->data['singleName'] = $name;
     }
 
     public function allowNull(bool $allowNull = true): PropertyTypeInterface
@@ -56,6 +58,13 @@ class PropertyType implements PropertyTypeInterface
     public function setBuilderFactory(BuilderFactoryInterface $factory): TypeInterface
     {
         $this->factory = $factory;
+
+        return $this;
+    }
+
+    public function setSingleName(string $singleName): PropertyTypeInterface
+    {
+        $this->data['singleName'] = $singleName;
 
         return $this;
     }

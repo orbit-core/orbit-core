@@ -10,5 +10,7 @@ interface PropertyTypeInterface extends TypeInterface
 
     public function isCollection(bool $isCollection = true): self;
 
+    public function setSingleName(string $singleName): self;
+
     public function setType(string $type): self;
 }

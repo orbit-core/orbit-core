@@ -22,6 +22,7 @@ class TestParser implements SchemaFileParserPluginInterface
             foreach ($transfer['properties'] as $property) {
                 $dtoProperty = $dto->property($property['name']);
                 $dtoProperty
+                    ->setSingleName($property['singleName'] ?? $property['name'])
                     ->allowNull($property['allowNull'] ?? false)
                     ->isCollection($property['collection'] ?? false)
                     ->setType($property['type'] ?? 'string');

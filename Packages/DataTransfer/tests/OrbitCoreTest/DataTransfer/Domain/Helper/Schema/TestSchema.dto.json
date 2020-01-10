@@ -28,6 +28,7 @@
       "properties": [
         {
           "name": "Employees",
+          "singleName": "Employee",
           "type": "Example",
           "collection": true
         }

@@ -32,7 +32,7 @@ class TransferBuilderTest extends Test
 
         $transferBuilder->transfer('testOne', $config)->property('propOne')->setType('int');
         $transferBuilder->transfer('testOne', $config)->property('propTwo')->setType('bool')->allowNull();
-        $transferBuilder->transfer('testOne', $config)->property('propThree')->setType('string')->isCollection();
+        $transferBuilder->transfer('testOne', $config)->property('propThrees')->setType('string')->setSingleName('propThree')->isCollection();
         $transferBuilder->transfer('testTwo', $config)->property('secondTransferProperty')->setType('testOne')->allowNull();
 
         $this->assertEquals(
@@ -40,16 +40,19 @@ class TransferBuilderTest extends Test
                 'testOne' => [
                     'propOne' => [
                         'allowNull' => false,
+                        'singleName' => 'propOne',
                         'isCollection' => false,
                         'type' => 'int'
                     ],
                     'propTwo' => [
                         'allowNull' => true,
+                        'singleName' => 'propTwo',
                         'isCollection' => false,
                         'type' => 'bool'
                     ],
-                    'propThree' => [
+                    'propThrees' => [
                         'allowNull' => false,
+                        'singleName' => 'propThree',
                         'isCollection' => true,
                         'type' => 'string'
                     ]
@@ -57,6 +60,7 @@ class TransferBuilderTest extends Test
                 'testTwo' => [
                     'secondTransferProperty' => [
                         'allowNull' => true,
+                        'singleName' => 'secondTransferProperty',
                         'isCollection' => false,
                         'type' => 'testOne'
                     ]
