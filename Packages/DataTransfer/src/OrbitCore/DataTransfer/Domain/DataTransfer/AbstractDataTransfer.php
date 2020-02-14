@@ -15,7 +15,9 @@ abstract class AbstractDataTransfer implements DataTransferInterface
 
     public function fromArray(array $data): void
     {
-        // TODO: Implement fromArray() method.
+        foreach ($data as $fieldName => $fieldValue) {
+
+        }
     }
 
     abstract public function getProperties(): array;
